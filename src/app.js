@@ -4,8 +4,12 @@ require("dotenv-safe").config();
 const express = require("express");
 //para evitar conflito de API
 const cors = require("cors");
+//uma constante para chamar o banco de dados
+const db = require("./database/mongoConfig");
 //instanciando o express
 const app = express();
+//conexão com o banco de dados.
+db.connect();
 
 //uma nova de fazer o body-parser(que eu posso utilizar o formato json)
 app.use(express.json());
