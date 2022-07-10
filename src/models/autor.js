@@ -16,7 +16,7 @@ const autorSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true
-    },
+    }, //(MM-DD-AA)
     dataNascimento: {
         type: Date
     }

@@ -15,5 +15,11 @@ db.connect();
 app.use(express.json());
 app.use(cors());
 
+//importar as rotas
+const autorRotas = require("./routes/autor");
+
+//definir uma rota raiz para as rotas do autor
+app.use("/autor", autorRotas);
+
 //serve para exportar a aplicação
 module.exports = app;
