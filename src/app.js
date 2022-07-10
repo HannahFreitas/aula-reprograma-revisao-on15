@@ -17,9 +17,11 @@ app.use(cors());
 
 //importar as rotas
 const autorRotas = require("./routes/autor");
+const livroRotas = require("./routes/livro");
 
-//definir uma rota raiz para as rotas do autor
+//definir uma rota raiz para as rotas
 app.use("/autor", autorRotas);
+app.use("/livro", livroRotas);
 
 //serve para exportar a aplicação
 module.exports = app;
