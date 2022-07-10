@@ -1,3 +1,5 @@
+//configurar o dotenv
+require("dotenv-safe").config();
 //Fazer conexão HTTP, body-parser, utiliza o Router
 const express = require("express");
 //para evitar conflito de API
