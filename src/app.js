@@ -1,26 +1,28 @@
-//configurar o dotenv
+//configurar o dotenv, o dotenv vem primeiro porque o ponto de entrada da aplicação é o app, 
+//então a variavel de ambiente vai estar em todo o projeto
 require("dotenv-safe").config();
-//Fazer conexão HTTP, body-parser, utiliza o Router
+// express serve para fazermos conexões http, ou seja, montar um servidor. 
+//é um framework. Também permite o body-parser. Faz a conexão com os endpoints dentro do CRUD.
 const express = require("express");
-//para evitar conflito de API
+//Para evitar conflito de API
 const cors = require("cors");
-//uma constante para chamar o banco de dados
+// uma constante para chamar o banco de dados
 const db = require("./database/mongoConfig");
-//instanciando o express
+//instaciando o express, para que a gente possa utilizá-lo
 const app = express();
-//conexão com o banco de dados.
+//conexão com o banco de dados
 db.connect();
 
-//uma nova de fazer o body-parser(que eu posso utilizar o formato json)
+//Forma de fazer o body-parser, nos dá acesso ao formato json para a aplicação
 app.use(express.json());
 app.use(cors());
 
-//importar as rotas
+// importar as rotas
 const autorRotas = require("./routes/autor");
-const livroRotas = require("./routes/livro");
-const usuarioRotas = require("./routes/usuario");
+const livroRotas = require ("./routes/livro");
+const usuarioRotas = require ("./routes/usuario")
 
-//definir uma rota raiz para as rotas
+//definir uma rota raiz para as rotas do autor
 app.use("/autor", autorRotas);
 app.use("/livro", livroRotas);
 app.use("/usuario", usuarioRotas);

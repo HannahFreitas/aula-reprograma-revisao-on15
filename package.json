@@ -1,22 +1,23 @@
 {
   "name": "aula-reprograma-revisao-on15",
   "version": "1.0.0",
-  "description": "## O que é um endpoint?",
-  "main": "server.js",
+  "description": "## O que é um endpoint? Um endpoint de um web service é a URL onde seu serviço pode ser acessado por uma aplicação cliente. Especificação do caminho da rota.",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HannahFreitas/aula-reprograma-revisao-on15.git"
+    "url": "git+https://github.com/brena-odwyer/aula-reprograma-revisao-on15.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HannahFreitas/aula-reprograma-revisao-on15/issues"
+    "url": "https://github.com/brena-odwyer/aula-reprograma-revisao-on15/issues"
   },
-  "homepage": "https://github.com/HannahFreitas/aula-reprograma-revisao-on15#readme",
+  "homepage": "https://github.com/brena-odwyer/aula-reprograma-revisao-on15#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

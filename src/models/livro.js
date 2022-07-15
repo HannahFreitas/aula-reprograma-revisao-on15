@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const livroSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     titulo: {
@@ -26,11 +25,10 @@ const livroSchema = new mongoose.Schema({
     autor: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: "autor"
+        ref: "autor" // aqui tem que ser igual a referência na model autor, na const na linha 24 Autor
     }
-}, {timestamps: true})
-
+}, {timestamps: true});
 
 const Livro = mongoose.model("livro", livroSchema);
 
-module.exports = Livro;
+module.exports = Livro

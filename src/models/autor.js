@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const autorSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     nome: {
@@ -16,11 +15,11 @@ const autorSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true
-    }, //(MM-DD-AA)
+    },
     dataNascimento: {
-        type: Date
+        type: Date // quando testar no postman usar o modelo americano MM-DD-AAAA
     }
-}, {timestamps: true})
+}, {timestamps: true});
 
 const Autor = mongoose.model("autor", autorSchema);
 
