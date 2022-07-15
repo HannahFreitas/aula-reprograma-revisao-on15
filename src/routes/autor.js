@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const autorController = require("../controllers/autor");
+const autorController = require("../controller/autor");
 const { checkAuth } = require("../middlewares/authentication");
 
-router.post("/cadastrar", autorController.cadastrarAutor);
-router.get("/listar", autorController.listarAutores);
-router.get("/listar/:id", autorController.listarAutorPorId);
-router.put("/atualizar/:id", autorController.atualizarAutorPorId);
-router.delete("/deletar/:id", autorController.deletarAutorPorId);
+
+router.post("/cadastrar", checkAuth, autorController.cadastrarAutor);
+router.get("/listar", checkAuth, autorController.listarAutores);
+router.get("/listar/:id", checkAuth, autorController.listarAutoresPorId);
+router.put("/atualizar/:id", checkAuth, autorController.atualizarAutorPorId);
+router.delete("/deletar/:id", checkAuth, autorController.deletarAutorPorId);
 
 
 

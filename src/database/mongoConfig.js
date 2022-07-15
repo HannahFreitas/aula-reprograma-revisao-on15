@@ -6,11 +6,12 @@ const connect = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        console.log("Banco conectado");
+        console.log("Meu banco de dados está rodando.");
     } catch (error) {
         console.error(error);
     }
-};
+}
+
 
 module.exports = {
     connect

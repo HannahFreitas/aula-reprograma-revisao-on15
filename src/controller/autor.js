@@ -1,39 +1,35 @@
-const Autor = require("../models/autor"); // com maiuscula porque é uma classe, mesmo nome do model
+const Autor = require("../models/autor");
 
 
-// create, post, createAuthor
 const cadastrarAutor = async (req, res) => {
     try {
         const { nome, biografia, email, dataNascimento } = req.body;
 
-        const novoAutor = new Autor({ // vem da const na linha 2
-            nome, // o que pegamos do body, seguindo o modelo de autor
+        const novoAutor = new Autor({
+            nome,
             biografia,
             email,
             dataNascimento
-        });
-        
-       
-        // Constante pare verificar se o que está sendo criado já existe:
-        const autorExiste = await Autor.findOne({email: req.body.email}); 
-        // se o que digitei de email no body já existir
-        if(autorExiste) { //se o req.body vier um email que já existe
+        })
+
+        const autorExiste = await Autor.findOne({email: req.body.email})
+        if(autorExiste) {
             return res.status(400).json({
                 error: "Email já cadastrado."
-            });
+            })
         }
 
         const salvarAutor = await novoAutor.save();
-        if(salvarAutor){res.status(201).send({
-            "message": "Cadastro realizado com sucesso",   
-            salvarAutor})};
-
+        res.status(201).json({
+            message: "Cadastro realizado com sucesso!",
+            salvarAutor
+        })
     } catch (error) {
         res.status(500).json({
             message: error.message
-        });
-    };
-};
+        })
+    }
+}
 
 const listarAutores = async (req, res) => {
     try {
@@ -41,25 +37,25 @@ const listarAutores = async (req, res) => {
         res.status(200).json({
             message: "Lista de autores",
             autores
-        });
-        if(autores.lenght ==0) {
+        })
+        if(autores.length == 0) {
             return res.status(404).json({
-                message: "Nenhum autor cadastrado"
-            });
-        };
+                message: "Nenhum autor encontrado."
+            })
+        }
     } catch (error) {
         res.status(500).json({
             message: error.message
-        });
-    };
-};
+        })
+    }
+}
 
-const listarAutorPorId = async (req, res) => {
+const listarAutoresPorId = async (req, res) => {
     try {
-        const autor = await Autor.findById(req.params.id);
+        const autor = await Autor.findById(req.params.id)
 
         if(!autor) {
-            return res.status(404).json({message: "Autor não encontrado."});
+            return res.status(404).json({message: "Cadastro não encontrado."})
         }
 
         res.status(200).json({
@@ -69,18 +65,19 @@ const listarAutorPorId = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: error.message
-        });
+        })
     }
-};
+}
 
 const atualizarAutorPorId = async (req, res) => {
     try {
-        const { nome, biografia, email } = req.body; // não faz sentido atualizar data de nascimento
+        const { nome, biografia, email } = req.body;
         const autor = await Autor.findById(req.params.id);
 
         if(!autor) {
-            return res.status(404).json({message: "Autor não encontrado."});
+            return res.status(404).json({message: "Cadastro não encontrado."})
         }
+
         autor.nome = nome || autor.nome
         autor.biografia = biografia || autor.biografia
         autor.email = email || autor.email
@@ -90,21 +87,21 @@ const atualizarAutorPorId = async (req, res) => {
         res.status(200).json({
             message: "Cadastro atualizado com sucesso!",
             atualizarAutor
-        });
-        
+        })
+
     } catch (error) {
         res.status(500).json({
             message: error.message
-        });
+        })
     }
-};
+}
 
 const deletarAutorPorId = async (req, res) => {
     try {
         const autor = await Autor.findById(req.params.id);
 
         if(!autor) {
-            return res.status(404).json({message: "Cadastro não encontrado."});
+            return res.status(404).json({message: "Cadastro não encontrado."})
         }
 
         await autor.delete();
@@ -112,15 +109,14 @@ const deletarAutorPorId = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             message: error.message
-        });
+        })
     }
-};
+}
 
-
-module.exports ={
+module.exports = {
     cadastrarAutor,
     listarAutores,
-    listarAutorPorId,
+    listarAutoresPorId,
     atualizarAutorPorId,
     deletarAutorPorId
-};
+}
