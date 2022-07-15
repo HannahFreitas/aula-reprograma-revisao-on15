@@ -1,6 +1,8 @@
-//configurar o dotenv, o dotenv vem primeiro porque o ponto de entrada da aplicação é o app, então a variavel de ambiente vai estar em todo o projeto
+//configurar o dotenv, o dotenv vem primeiro porque o ponto de entrada da aplicação é o app, 
+//então a variavel de ambiente vai estar em todo o projeto
 require("dotenv-safe").config();
-// express serve para fazermos conexões http, ou seja, montar um servidor. é um framework. Também permite o body-parser. Faz a conexão com os endpoints dentro do CRUD.
+// express serve para fazermos conexões http, ou seja, montar um servidor. 
+//é um framework. Também permite o body-parser. Faz a conexão com os endpoints dentro do CRUD.
 const express = require("express");
 //Para evitar conflito de API
 const cors = require("cors");

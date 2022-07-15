@@ -75,10 +75,55 @@ const listarUsuarios = async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message})
     }
-}
+};
+
+const atualizarUsuarioPorId = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const usuario = await Usuario.findById(req.params.id);
+
+        if(!usuario) {
+            return res.status(404).json({message: "Usuário não encontrado."});
+        }
+
+        usuario.email = email || usuario.email
+        usuario.password = password || usuario.password
+
+        const atualizarUsuario = await usuario.save();
+
+        res.status(200).json({
+            message: "Usuário atualizado:",
+            atualizarUsuario
+        })
+        
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+};
+
+const deletarUsuarioPorId = async (req, res) => {
+    try {
+
+        const usuario = await Usuario.findById(req.params.id);
+
+        if(!usuario) {
+            return res.status(404).json({message: "Usuário não encontrado."});
+        }
+
+        await usuario.delete();
+        res.status(200).json({message: "Usuário deletado com sucesso."})
+        
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
 
 module.exports = {
     cadastrarUsuario,
     login,
-    listarUsuarios
+    listarUsuarios,
+    atualizarUsuarioPorId,
+    deletarUsuarioPorId
 }

@@ -1,4 +1,8 @@
 const Autor = require("../models/autor"); // com maiuscula porque é uma classe, mesmo nome do model
+const usuario = require("../models/usuario");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 
 // create, post, createAuthor
 const cadastrarAutor = async (req, res) => {
@@ -11,9 +15,11 @@ const cadastrarAutor = async (req, res) => {
             email,
             dataNascimento
         });
-
+        
+       
         // Constante pare verificar se o que está sendo criado já existe:
-        const autorExiste = await Autor.findOne({email: req.body.email}); // se o que digitei de email no body já existir
+        const autorExiste = await Autor.findOne({email: req.body.email}); 
+        // se o que digitei de email no body já existir
         if(autorExiste) { //se o req.body vier um email que já existe
             return res.status(400).json({
                 error: "Email já cadastrado."
